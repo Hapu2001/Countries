@@ -6,17 +6,7 @@ const nextConfig = {
     apiUrl: "https://restcountries.come/v3.1",
   },
   images: {
-    images: {
-      unoptimized: true,
-    },
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "flagcdn.com",
-        port: "",
-        pathname: "/w320/**",
-      },
-    ],
+    domains: ["flagcdn.com", "upload.wikimedia.org"],
   },
 };
 
