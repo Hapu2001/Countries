@@ -19,7 +19,7 @@ export const CountryCard = (props: Props) => {
       <div>
         <div className="w-[250px] h-[150px] relative block">
           <Image
-            priority={name.common === "Aruba" || "Mexico"}
+            priority={name.common === ("Aruba" || "Mexico")}
             className="rounded"
             fill
             alt="Image of the country"
