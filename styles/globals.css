@@ -3,24 +3,16 @@
 @tailwind utilities;
 @layer components {
     .btn-pagnigation {
-        @apply  px-[24px] py-[15px] dark:bg-blue-dark dark:text-white rounded cursor-pointer hover:bg-slate-900  ;
+        @apply  px-[24px] py-[15px] dark:bg-blue-dark dark:text-white rounded cursor-pointer hover:bg-slate-900 dark:hover:bg-slate-900 ;
     }
-
 }
-
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;600;800&display=swap');
-
-
 @font-face {
     font-family: "nunino";
     src: url("/font/NunitoSans-Light.ttf");
 }
-
 @layer base {
     * {
         @apply  font-nunitoSans 
     }
-    
-
-
 }

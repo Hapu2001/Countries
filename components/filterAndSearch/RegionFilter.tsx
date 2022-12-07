@@ -21,6 +21,7 @@ export const RegionFilter = (props: any) => {
       color: theme === "light" ? "hsl(200, 15%, 8%)" : "rgb(255 255 255)",
       padding: 5.5,
       width: 200,
+      cursor: "pointer",
     }),
     option: (styles: any, state: any) => ({
       ...styles,
@@ -33,6 +34,7 @@ export const RegionFilter = (props: any) => {
           ? "rgb(15, 23, 42)"
           : "hsl(209, 23%, 22%)",
       border: "none",
+      cursor: "pointer",
       color: theme === "light" ? "hsl(200, 15%, 8%)" : "rgb(255 255 255)",
       "&:hover": {
         backgroundColor:
@@ -71,7 +73,7 @@ export const RegionFilter = (props: any) => {
   };
 
   return (
-    <div className="sm:w-[200px]">
+    <div className="sm:w-[200px] ">
       <Select
         placeholder={"Filter by Region"}
         id="long-value-select"

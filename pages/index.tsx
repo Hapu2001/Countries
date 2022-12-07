@@ -38,9 +38,9 @@ const GetData = () => {
   const query = router.query;
   const path = router.pathname;
   const { data, error } = useSWR("/api/countries");
-  const [region, setRegion] = useState(router.query.region);
+  const [region, setRegion] = useState("");
   const [listCountries, setListCountries] = useState<Country[]>([]);
-  const [search, setSearch] = useState(router.query.name);
+  const [search, setSearch] = useState("");
   const [listSearch, setListSearch] = useState<Country[]>([]);
   // configPagnigations
   const countryPerPage = 8;
@@ -82,6 +82,12 @@ const GetData = () => {
       query: query,
     });
   };
+  const handleResetQuery = () => {
+    setRegion("");
+    setSearch("");
+    query.name = "";
+    query.region = "";
+  };
   useEffect(() => {
     let tempPageNumber: number[] = [];
     for (
@@ -104,8 +110,8 @@ const GetData = () => {
     const handlePreLoad = async () => {
       setListSearch([]);
       if (query.name && query.region) {
-        setSearch(query.name);
-        setRegion(query.region);
+        setSearch(query.name as string);
+        setRegion(query.region as string);
         let tempListFilter: Country[];
         await fetch(`https://restcountries.com/v3.1/region/${query.region}`)
           .then((res) => res.json())
@@ -120,7 +126,7 @@ const GetData = () => {
         return setListSearch(tempListFilter!);
       }
       if (query.name) {
-        setSearch(query.name);
+        setSearch(query.name as string);
         let tempListSearch = [...data];
         tempListSearch = tempListSearch.filter((country: Country) =>
           country.name.common.toLocaleLowerCase().includes(query.name as string)
@@ -147,6 +153,7 @@ const GetData = () => {
   if (listCountries.length === 0) {
     return <Loading />;
   }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -155,7 +162,7 @@ const GetData = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="text-blue-dark-text text-[14px] bg-white dark:bg-blue-dark-bg  dark:text-white ">
-        <Header />
+        <Header handleResetQuery={handleResetQuery} />
         {isPageLoading ? (
           <Loading />
         ) : (

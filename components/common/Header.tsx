@@ -4,13 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 
-export const Header = () => {
+export const Header = (props: any) => {
   const { systemTheme, theme, setTheme } = useTheme();
   const currentTheme = theme === "system" ? systemTheme : theme;
   return (
     <div className="flex dark:bg-blue-dark justify-between py-4 px-[50px] shadow-primary items-center sm:px-[15px] ">
-      <Link href="/">
-        <p className="text-[18px] font-extrabold  dark:hover:text-blue-dark-text">
+      <Link href="">
+        <p
+          className="text-[18px] font-extrabold  dark:hover:text-blue-dark-text"
+          onClick={() => props.handleResetQuery()}
+        >
           Where in the world?
         </p>
       </Link>

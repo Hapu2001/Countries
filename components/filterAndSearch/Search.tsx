@@ -14,12 +14,12 @@ export const Search = (props: any) => {
           name="inputSearch"
           defaultValue={props.search}
         ></input>
-
-        <FontAwesomeIcon
-          type="submit"
+        <button
           className="absolute left-[17px] w-[14px] cursor-pointer "
-          icon={faMagnifyingGlass}
-        />
+          type="submit"
+        >
+          <FontAwesomeIcon icon={faMagnifyingGlass} />
+        </button>
       </div>
     </form>
   );

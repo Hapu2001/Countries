@@ -10,10 +10,8 @@ interface Props {
     population: string;
   };
 }
-
 export const CountryCard = (props: Props) => {
   const { flags, name, region, capital, population } = props.country;
-
   return (
     <div className="shadow-primary hover:shadow-secondary mb-[40px] relative w-[250px] h-[300px] rounded">
       <div>
