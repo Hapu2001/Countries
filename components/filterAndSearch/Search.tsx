@@ -2,7 +2,12 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-export const Search = (props: any) => {
+interface Props {
+  search: string;
+  onFormSubmit: (e: any) => any;
+}
+
+export const Search = (props: Props) => {
   return (
     <form onSubmit={props.onFormSubmit}>
       <div className="flex items-center relative sm:mb-[35px] ">

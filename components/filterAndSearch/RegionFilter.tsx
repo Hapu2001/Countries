@@ -1,8 +1,11 @@
 import React from "react";
 import Select from "react-select";
 import { useTheme } from "next-themes";
-
-export const RegionFilter = (props: any) => {
+interface Props {
+  region: string;
+  handleChangeSetRegion: (region: string) => any;
+}
+export const RegionFilter = (props: Props) => {
   const { theme } = useTheme();
   const options = [
     { id: "1", value: "africa", label: "Africa" },
@@ -71,7 +74,6 @@ export const RegionFilter = (props: any) => {
       color: theme === "light" ? "hsl(200, 15%, 8%)" : "rgb(255 255 255)",
     }),
   };
-
   return (
     <div className="sm:w-[200px] ">
       <Select

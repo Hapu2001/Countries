@@ -9,7 +9,6 @@ import { Loading } from "../../components/common/Loading";
 import { usePageLoading } from "../../components/common/usePageLoading";
 import Image from "next/image";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
 interface CountryData {
   countryData: {
     flags: { png: string };
@@ -24,7 +23,7 @@ interface CountryData {
     borders: string[];
   };
 }
-
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Country = () => {
   const { isPageLoading } = usePageLoading();
   const { data, error } = useSWR("/api/name");
@@ -143,7 +142,6 @@ const Country = () => {
     </div>
   );
 };
-
 export default function Detail({ fallback }: any) {
   return (
     <SWRConfig value={{ fallback }}>

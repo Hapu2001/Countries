@@ -12,7 +12,6 @@ import Country from "./countries/[name]";
 import useSWR, { SWRConfig } from "swr";
 import { Loading } from "../components/common/Loading";
 import { GetServerSideProps } from "next";
-import { Router } from "next/router";
 import { usePageLoading } from "../components/common/usePageLoading";
 import PageNotFound from "../components/common/PageNotFound";
 
@@ -27,9 +26,6 @@ interface Country {
   subregion: string;
   tld: string[];
   borders: string[];
-}
-interface Countries {
-  countries: Country[];
 }
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const GetData = () => {
@@ -150,7 +146,7 @@ const GetData = () => {
       ? listSearch.slice(startIndex, lastIndex)
       : listCountries.slice(startIndex, lastIndex);
   ///////////////////LazyLoadData/////////////////////////////////////////
-  if (listCountries.length === 0) {
+  if (tempListCountries.length === 0) {
     return <Loading />;
   }
 
@@ -219,9 +215,7 @@ export default function Home({ fallback }: any) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({
-  params,
-}: any) => {
+export const getServerSideProps: GetServerSideProps = async () => {
   let tempCountries = await fetcher("https://restcountries.com/v3.1/all");
   let countries = tempCountries.map((country: Country) => ({
     ...country,
