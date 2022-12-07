@@ -8,6 +8,7 @@ import useSWR, { SWRConfig } from "swr";
 import { Loading } from "../../components/common/Loading";
 import { usePageLoading } from "../../components/common/usePageLoading";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 interface CountryData {
   countryData: {
@@ -25,12 +26,20 @@ interface CountryData {
 }
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 const Country = () => {
+  const router = useRouter();
+  const query = router.query;
+  const path = router.pathname;
   const { isPageLoading } = usePageLoading();
   const { data, error } = useSWR("/api/name");
   const nativeName =
     data.name.nativeName[Object.keys(data.name.nativeName)[0]].common;
   const currenciesRender =
     data.currencies[Object.keys(data.currencies)[0]].name;
+  const handleResetQuery = () => {
+    router.push({
+      pathname: "/",
+    });
+  };
   if (!data) {
     return <Loading />;
   }
@@ -40,7 +49,7 @@ const Country = () => {
         data.borders.length < 6 ? "h-[100vh]" : "h-auto"
       } md:h-auto sm:h-auto`}
     >
-      <Header />
+      <Header handleResetQuery={handleResetQuery} />
       {isPageLoading ? (
         <Loading />
       ) : (
