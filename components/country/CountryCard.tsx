@@ -13,22 +13,18 @@ interface Props {
 
 export const CountryCard = (props: Props) => {
   const { flags, name, region, capital, population } = props.country;
-  const styleImage = {
-    width: "auto",
-    height: " auto",
-  };
 
   return (
     <div className="shadow-primary hover:shadow-secondary mb-[40px] relative w-[250px] h-[300px] rounded">
       <div>
-        <div className="w-[250px]">
+        <div className="w-[250px] h-[150px] relative block">
           <Image
-            style={{ width: "auto", height: " auto" }}
-            className="h-[150px] w-full rounded"
+            priority={name.common === "Aruba" || "Mexico"}
+            className="rounded"
+            fill
             alt="Image of the country"
-            width={150}
-            height={150}
             src={flags.png}
+            sizes="full"
           />
         </div>
         <div className="p-5">
